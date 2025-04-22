@@ -36,14 +36,12 @@ public:
 		cout << "~Animal()\n";
 		cout << weight << " " << type << " " << color << endl;
 	}
-
-void twotype()
+	void twotype()
 	{
 		type = "hare";
 	}
 	void change();
 };
-
 void Animal::change()
 {
 	weight = 8;
@@ -77,6 +75,7 @@ public:
 		cout << "~Skills()\n";
 		cout << "weight: " << weight << " ,type: " << type << " ,color: " << color << " ,skil: " << skil << endl;
 	}
+
 void change_skil (string new_skil)
 	{
 		skil = new_skil;
@@ -84,10 +83,13 @@ void change_skil (string new_skil)
 };
 
 int main()
+
 {
-		Skills k1;
-		Skills *k2= new Skills(2, "bird","black","jump");
+		Skills *k= new Skills(2, "bird","black","jump");
+		Animal *k2= new Skills(2, "bird","black","jump");
+		delete k;
 		delete k2;
 		cin.get();
 		return 0;
+
 }
