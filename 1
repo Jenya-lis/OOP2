@@ -3,30 +3,51 @@
 #include <iostream>
 using namespace std;
 
+class Insect
+{
+public:
+	Insect()
+	{
+		cout<< "Insect()\n";
+	}
+	Insect(int weight1,string type1, string color1)
+	{
+		cout<< "Insect(int weight1,string type1, string color1)\n";
+	}
+	Insect(const Insect& p)
+	{
+		cout<< "Insect(const Insect& p)\n";		
+	}
+	~Insect()
+	{
+		cout << "~Insect()\n";
+	}
+};
+
 class Animal
 {
-protected:
+public:
 	string type;
 	int weight;
 	string color;
-public:
-	Animal()
+	Insect n1;
+	Animal():n1()
 	{
-		cout<< "Animal()\n";
+		cout<< "Animal():n1()\n";
 		weight= 0;
 		type= "_";
 		color= "_";
 	}
-	Animal(int weight,string type, string color)
+	Animal(int weight,string type, string color): n1(weight, type, color)
 	{
-		cout<< "Animal(int weight,string type, string color)\n";
+		cout<< "Animal(int weight,string type, string color): n1(weight, type, color)\n";
 		this ->weight= weight;
 		this ->type= type;
 		this ->color= color;
 	}
-	Animal(const Animal &p)
+	Animal(const Animal &p): n1(p.n1)
 	{
-		cout<< "Animal(const Animal &p)\n";
+		cout<< "Animal(const Animal &p): n1(p.n1)\n";
 		weight= p.weight;
 		type= p.type;
 		color= p.color;
@@ -36,60 +57,25 @@ public:
 		cout << "~Animal()\n";
 		cout << weight << " " << type << " " << color << endl;
 	}
-	void twotype()
+void twotype()
 	{
 		type = "hare";
 	}
 	void change();
 };
+
 void Animal::change()
 {
 	weight = 8;
 	color = "white";
 }
 
-class Skills: public Animal
-{
-public:
-	string skil;
-	Skills(): Animal()
-	{
-		cout<< "Skills(): Animal()\n";
-		skil = "_";
-	}
-	Skills(int weight,string type, string color, string skil):Animal( weight, type, color)
-	{
-		cout<< "Skills(int weight,string type, string color, string skil):Animal( weight, type, color)\n";
-		this ->skil= skil;
-	}
-	Skills(const Skills& p)
-	{
-		cout<< "Skills(const Skills &p)\n";
-		skil= p.skil;
-		weight= p.weight;
-		type= p.type;
-		color= p.color;
-	}
-	~Skills()
-	{
-		cout << "~Skills()\n";
-		cout << "weight: " << weight << " ,type: " << type << " ,color: " << color << " ,skil: " << skil << endl;
-	}
-
-void change_skil (string new_skil)
-	{
-		skil = new_skil;
-	}
-};
-
 int main()
-
 {
-		Skills *k= new Skills(2, "bird","black","jump");
-		Animal *k2= new Skills(2, "bird","black","jump");
-		delete k;
-		delete k2;
+	{
+		Animal k1;
+		Animal k2 = k1;
+	}
 		cin.get();
 		return 0;
-
 }
