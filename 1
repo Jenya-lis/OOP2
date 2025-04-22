@@ -5,9 +5,12 @@ using namespace std;
 
 class Animal
 {
-public:
+protected:
+	string type;
+private:
 	int weight;
-	string type,color;
+	string color;
+public:
 	Animal()
 	{
 		cout<< "Animal()\n";
@@ -15,6 +18,7 @@ public:
 		type= "_";
 		color= "_";
 	}
+
 	Animal(int weight,string type, string color)
 	{
 		cout<< "Animal(int weight,string type, string color)\n";
@@ -22,6 +26,7 @@ public:
 		this ->type= type;
 		this ->color= color;
 	}
+
 	Animal(const Animal &p)
 	{
 		cout<< "Animal(const Animal &p)\n";
@@ -29,21 +34,34 @@ public:
 		type= p.type;
 		color= p.color;
 	}
+
 	~Animal()
 	{
 		cout << "~Animal()\n";
 		cout << weight << " " << type << " " << color << endl;
 	}
+	void twotype()
+	{
+		type = "hare";
+	}
+	void change();
 };
-int main()
 
+void Animal::change()
 {
-		Animal *n1= new Animal;
-		Animal *n2= new Animal(5, "cat","brown");
-		Animal* n3= new Animal(*n2);
-		delete n1;
-		delete n2;
-		delete n3;
+	weight = 8
+	color = "white";
+}
+
+int main()
+{
+		Animal *k1= new Animal;
+		Animal *k2= new Animal(10, "dog","black");
+		k2 ->twotype();
+		k2 ->change();
+
+		delete k1;
+		delete k2;
 		cin.get();
 		return 0;
 }
