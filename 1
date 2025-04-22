@@ -7,7 +7,6 @@ class Animal
 {
 protected:
 	string type;
-private:
 	int weight;
 	string color;
 public:
@@ -18,7 +17,6 @@ public:
 		type= "_";
 		color= "_";
 	}
-
 	Animal(int weight,string type, string color)
 	{
 		cout<< "Animal(int weight,string type, string color)\n";
@@ -26,7 +24,6 @@ public:
 		this ->type= type;
 		this ->color= color;
 	}
-
 	Animal(const Animal &p)
 	{
 		cout<< "Animal(const Animal &p)\n";
@@ -34,13 +31,13 @@ public:
 		type= p.type;
 		color= p.color;
 	}
-
 	~Animal()
 	{
 		cout << "~Animal()\n";
 		cout << weight << " " << type << " " << color << endl;
 	}
-	void twotype()
+
+void twotype()
 	{
 		type = "hare";
 	}
@@ -49,18 +46,47 @@ public:
 
 void Animal::change()
 {
-	weight = 8
+	weight = 8;
 	color = "white";
 }
 
+class Skills: public Animal
+{
+public:
+	string skil;
+	Skills(): Animal()
+	{
+		cout<< "Skills(): Animal()\n";
+		skil = "_";
+	}
+	Skills(int weight,string type, string color, string skil):Animal( weight, type, color)
+	{
+		cout<< "Skills(int weight,string type, string color, string skil):Animal( weight, type, color)\n";
+		this ->skil= skil;
+	}
+	Skills(const Skills& p)
+	{
+		cout<< "Skills(const Skills &p)\n";
+		skil= p.skil;
+		weight= p.weight;
+		type= p.type;
+		color= p.color;
+	}
+	~Skills()
+	{
+		cout << "~Skills()\n";
+		cout << "weight: " << weight << " ,type: " << type << " ,color: " << color << " ,skil: " << skil << endl;
+	}
+void change_skil (string new_skil)
+	{
+		skil = new_skil;
+	}
+};
+
 int main()
 {
-		Animal *k1= new Animal;
-		Animal *k2= new Animal(10, "dog","black");
-		k2 ->twotype();
-		k2 ->change();
-
-		delete k1;
+		Skills k1;
+		Skills *k2= new Skills(2, "bird","black","jump");
 		delete k2;
 		cin.get();
 		return 0;
